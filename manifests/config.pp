@@ -13,12 +13,12 @@ class kiwiirc::config(
         group       => 'kiwiirc',
         content     => template('kiwiirc/config.js.erb'),
         notify      => Service['kiwiirc'],
+        require     => Class['kiwiirc::package'],
     } -> 
     gnutls::generate_key{'kiwiirc':
         certfile    => '/opt/kiwiirc/cert.pem',
         keyfile     => '/opt/kiwiirc/server.key',
         user        => 'kiwiirc',
-        require     => Class['kiwiirc::package'],
     } -> 
     firewall { "7777 KiwiIRC from ALL":
         proto   => 'tcp',
