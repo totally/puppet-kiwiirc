@@ -3,6 +3,7 @@ Get KiwiIRC server running
 
 # Dependencies:
 puppetlabs-nodejs (required)
+puppetlabs-vcsrepo (required)
 puppetlabs-firewall (optional)
 gnutls (for key generation, not yet released)
 
