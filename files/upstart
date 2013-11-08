@@ -1,0 +1,12 @@
+#!upstart
+description "kiwiirc"
+
+start on started mountall
+stop on shutdown
+
+script
+    HOME=/opt/kiwiirc
+    export HOME
+    cd /opt/kiwiirc
+    exec /opt/kiwiirc/kiwi start
+end script

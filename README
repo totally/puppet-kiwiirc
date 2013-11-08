@@ -1,0 +1,16 @@
+# puppet-kiwiirc:
+Get KiwiIRC server running
+
+# Dependencies:
+puppetlabs-nodejs (required)
+puppetlabs-firewall (optional)
+gnutls (for key generation, not yet released)
+
+# Config
+Have a look at the manifests/config, it should be pretty clear how to
+set variables.  A lot of variables are not in the template, feel free
+to fork and submit a PR to see the features you want.
+
+# Have a 
+Nice day.
+
