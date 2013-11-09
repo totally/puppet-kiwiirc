@@ -1,6 +1,18 @@
 class kiwiirc::package{
 
-    include nodejs
+    $nodejs_v = hiera('nodejs_v','installed')
+
+    if !defined(Class['nodejs']){
+        class{ 'nodejs':
+            manage_repo => true,
+            version     => $nodejs_v,
+        }
+    }
+    if !defined(package['git']){
+        package{'git':
+            ensure  => installed,
+        }
+    }
 
     vcsrepo { '/opt/kiwiirc':
         ensure      => present,
@@ -9,7 +21,7 @@ class kiwiirc::package{
         source      => 'https://github.com/prawnsalad/KiwiIRC.git',
         require     => [
             Class['nodejs'],
-            Class['git'],
+            Package['git'],
             Class['kiwiirc::user']
         ],
     } -> 
@@ -30,6 +42,13 @@ class kiwiirc::package{
         cwd         => '/opt/kiwiirc',
         user        => 'kiwiirc',
         onlyif      => 'test $(ls -1 /opt/kiwiirc/.npm | wc -l) -lt 1',
+        logoutput   => true,
+    } -> 
+    exec {'build kiwiirc':
+        command     => './kiwi build',
+        cwd         => '/opt/kiwiirc',
+        user        => 'kiwiirc',
+        onlyif      => 'test -f index.html && test -f kiwi.js',
         logoutput   => true,
     } -> 
     # startup script
