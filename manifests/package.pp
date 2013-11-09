@@ -8,7 +8,7 @@ class kiwiirc::package{
             version     => $nodejs_v,
         }
     }
-    if !defined(package['git']){
+    if !defined(Package['git']){
         package{'git':
             ensure  => installed,
         }
