@@ -170,7 +170,7 @@ conf.restrict_server = "<%= scope.lookupvar('kiwiirc::config::restrict_server') 
 conf.restrict_server_port = <%= scope.lookupvar('kiwiirc::config::restrict_server_port') %>;
 <% end -%>
 <% if scope.lookupvar('kiwiirc::config::restrict_server_ssl') != "" -%>
-conf.restrict_server_ssl = "<%= scope.lookupvar('kiwiirc::config::restrict_server_ssl') %>";
+conf.restrict_server_ssl = <%= scope.lookupvar('kiwiirc::config::restrict_server_ssl') %>;
 <% end -%>
 <% if scope.lookupvar('kiwiirc::config::restrict_server_channel') != "" -%>
 conf.restrict_server_channel = "<%= scope.lookupvar('kiwiirc::config::restrict_server_channel') %>";
